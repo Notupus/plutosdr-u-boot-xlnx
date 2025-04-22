@@ -11,9 +11,7 @@
 #include <asm/arch/clk.h>
 
 /* Board oscillator frequency */
-#ifndef CONFIG_ZYNQ_PS_CLK_FREQ
-# define CONFIG_ZYNQ_PS_CLK_FREQ	33333333UL
-#endif
+#define CONFIG_ZYNQ_PS_CLK_FREQ	50000000UL
 
 /* Register bitfield defines */
 #define PLLCTRL_FBDIV_MASK	0x7f000

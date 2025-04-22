@@ -1,7 +1,5 @@
 /*
- * Analog Devices Inc. Pluto SDR board DTS
- *
- * Copyright (C) 2015-2018 Analog Devices Inc.
+ * LIBRE board DTS
  *
  * SPDX-License-Identifier:	GPL-2.0+
  */
@@ -9,14 +7,13 @@
 #include "zynq-7000.dtsi"
 
 / {
-	model = "Zynq Pluto SDR Board";
+	model = "LibreSDR";
 	compatible = "xlnx,zynq-7000";
 
 	aliases {
 		ethernet0 = &gem0;
-		serial0 = &uart1;
+		serial0 = &uart0;
 		spi0 = &qspi;
-		mmc0 = &sdhci0;
 	};
 
 	memory {
@@ -26,8 +23,8 @@
 
 	chosen {
 		bootargs = "earlyprintk";
-		linux,stdout-path = &uart1;
-		stdout-path = &uart1;
+		linux,stdout-path = &uart0;
+		stdout-path = &uart0;
 	};
 
 	usb_phy0: phy0 {
@@ -45,10 +42,16 @@
 			wakeup-source;
 			autorepeat;
 		};
+
 	};
-
-
+	
+	
 };
+
+
+
+	
+
 
 &qspi {
 	status = "okay";
@@ -81,7 +84,7 @@
 	};
 };
 
-&uart1 {
+&uart0 {
 	status = "okay";
 };
 
@@ -90,8 +93,19 @@
 	dr_mode = "host";
 	usb-phy = <&usb_phy0>;
 };
-
 &sdhci0 {
 	u-boot,dm-pre-reloc;
 	status = "okay";
+	
+};
+
+&gem0 {
+	status = "okay";
+	phy-mode = "rgmii-id";
+	phy-handle = <&ethernet_phy0>;
+
+	ethernet_phy0: ethernet-phy@0 {
+		reg = <0>;
+		reset-gpios = <&gpio0 46 0>;
+	};
 };

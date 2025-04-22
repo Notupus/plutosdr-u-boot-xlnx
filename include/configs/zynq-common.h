@@ -16,6 +16,9 @@
 # define CONFIG_CPU_FREQ_HZ	800000000
 #endif
 
+/* TODO Define LibreSDR PS Clock Frequency to 50MHz in dts */
+#define CONFIG_ZYNQ_PS_CLK_FREQ	50000000UL
+
 #define	CONFIG_SYS_DEVICE_NULLDEV	1
 
 /* Cache options */
